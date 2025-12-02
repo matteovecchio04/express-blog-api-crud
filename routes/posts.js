@@ -1,20 +1,19 @@
 const express = require("express")
 const router = express.Router()
 
-router.get("/", (req, res) => {
-    res.send("lista dei post")
-})
+const {
+    index,
+    show,
+    create,
+    destroy
+} = require("../controllers/controller")
 
-router.get("/:id", (req, res) => {
-    res.send("singolo post")
-})
+router.get("/", index)
 
-router.post("/", (req, res) => {
-    res.send("creo il post")
-})
+router.get("/:id", show)
 
-router.delete("/:id", (req, res) => {
-    res.send("elimino il post")
-})
+router.post("/", create)
+
+router.delete("/:id", destroy)
 
 module.exports = router
