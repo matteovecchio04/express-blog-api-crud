@@ -21,7 +21,14 @@ function create(req, res) {
 }
 
 function destroy(req, res) {
-    res.send("elimino il post");
+    const id = Number(req.params.id)
+
+    posts = posts.filter(p => p.id !== id)
+
+    console.log("Lista aggiornata", posts)
+
+    res.status(204).send()
+
 }
 
 module.exports = {
