@@ -17,7 +17,8 @@ function show(req, res) {
 }
 
 function create(req, res) {
-    res.send("creo il post");
+    console.log("Dati ricevuti", req.body)
+    res.send("ricevuto");
 }
 
 function destroy(req, res) {
