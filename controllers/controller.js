@@ -1,3 +1,5 @@
+let posts = require("../data/posts");
+
 function index(req, res) {
     res.send("lista dei post");
 }
