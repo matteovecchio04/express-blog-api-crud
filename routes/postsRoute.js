@@ -5,7 +5,8 @@ const {
     index,
     show,
     create,
-    destroy
+    destroy,
+    update
 } = require("../controllers/controller")
 
 router.get("/", index)
@@ -15,5 +16,7 @@ router.get("/:id", show)
 router.post("/", create)
 
 router.delete("/:id", destroy)
+
+router.put("/:id", update)
 
 module.exports = router

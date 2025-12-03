@@ -17,8 +17,23 @@ function show(req, res) {
 }
 
 function create(req, res) {
-    console.log("Dati ricevuti", req.body)
-    res.send("ricevuto");
+    const data = req.body;
+
+    let newId;
+    if (posts.length > 0) {
+        newId = posts[posts.length - 1].id + 1;
+    } else {
+        newId = 1;
+    }
+
+    const newPost = {
+        id: newId,
+        ...data
+    };
+
+    posts.push(newPost);
+
+    res.status(201).json(newPost);
 }
 
 function destroy(req, res) {
@@ -32,9 +47,24 @@ function destroy(req, res) {
 
 }
 
+function update(req, res) {
+    const id = Number(req.params.id);
+    const post = posts.find(p => p.id === id);
+
+    if (!post) {
+        return res.status(404).json({ error: "Post non trovato" });
+    }
+
+    post.title = req.body.title !== undefined ? req.body.title : post.title;
+    post.content = req.body.content !== undefined ? req.body.content : post.content;
+
+    res.json(post);
+}
+
 module.exports = {
     index,
     show,
     create,
-    destroy
+    destroy,
+    update
 };
